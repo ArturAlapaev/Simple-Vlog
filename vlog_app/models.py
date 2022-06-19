@@ -1,43 +1,42 @@
-from enum import unique
 from django.db import models
 from django.contrib.auth.models import User
-from django.forms import URLField
 
-# Create your models here.
+# Create your models here
+
+
 class Post(models.Model):
     title = models.CharField(
-        max_length = 100,
-        verbose_name = 'Заголовок'
+        max_length=100,
+        verbose_name='Заголовок'
     )
     img = models.ImageField(
-        verbose_name = 'Пост',
-        upload_to = 'photos/%Y/%m/%d/'
+        verbose_name='Пост',
+        upload_to='photos/%Y/%m/%d/'
     )
     description = models.TextField(
         verbose_name='Комментарий к посту'
     )
     is_draft = models.BooleanField(
-        verbose_name = 'Черновик',
+        verbose_name='Черновик',
         default=False
     )
     is_delete = models.BooleanField(
         verbose_name='Удален',
         default=False
     )
-    create_date=models.DateTimeField(
+    create_date = models.DateTimeField(
         verbose_name='Дата создания',
         auto_now_add=True
     )
-    update_date=models.DateTimeField(
+    update_date = models.DateTimeField(
         verbose_name='Дата последнего обновления',
         auto_now=True
     )
     user = models.ForeignKey(
         User,
         on_delete=models.PROTECT,
-        verbose_name = 'Пользователь'
+        verbose_name='Пользователь'
     )
-    
+
     def __str__(self) -> str:
         return str(self.title)
-    
