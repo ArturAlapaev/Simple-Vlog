@@ -125,5 +125,5 @@ class SiteInfo(models.Model):
 
 SITE_INFO = {
     'contacts': None,
-    'site-info': None
+    'site_info': None
 }
